@@ -1,2 +1,3 @@
 # rustpinky
-A Pinky interpreter written in Rust
+
+A [Pinky](https://pinky-lang.org) interpreter written in Rust.
