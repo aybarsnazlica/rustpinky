@@ -1,20 +1,17 @@
-use super::token::Token;
-use super::token::TokenType;
-
-pub struct Lexer<'a> {
-    source: &'a str,
-    start: usize,
+pub struct Lexer {
+    source: String,
+    // start: usize,
     curr: usize,
-    line: usize,
+    // line: usize,
 }
 
-impl<'a> Lexer<'a> {
-    pub fn new(source: &'a str) -> Self {
+impl Lexer {
+    pub fn new(source: String) -> Self {
         Self {
             source,
-            start: 0,
+            // start: 0,
             curr: 0,
-            line: 1,
+            // line: 1,
         }
     }
 
@@ -31,7 +28,7 @@ mod tests {
 
     #[test]
     fn test_advance_single_character() {
-        let source = "abc";
+        let source = String::from("abc");
         let mut lexer = Lexer::new(source);
 
         let ch = lexer.advance();
@@ -42,7 +39,7 @@ mod tests {
 
     #[test]
     fn test_advance_multiple_characters() {
-        let source = "abc";
+        let source = String::from("abc");
         let mut lexer = Lexer::new(source);
 
         assert_eq!(lexer.advance(), 'a');

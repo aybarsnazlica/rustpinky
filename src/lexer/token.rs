@@ -56,47 +56,19 @@ pub enum TokenType {
     Ret,
 }
 
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Token<'a> {
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Token {
     pub token_type: TokenType,
-    pub lexeme: &'a str,
+    pub lexeme: String,
     pub line: usize,
 }
 
-impl<'a> Token<'a> {
-    pub fn new(token_type: TokenType, lexeme: &'a str, line: usize) -> Self {
+impl Token {
+    pub fn new(token_type: TokenType, lexeme: String, line: usize) -> Self {
         Self {
             token_type,
             lexeme,
             line,
         }
-    }
-}
-
-impl core::fmt::Debug for Token<'_> {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        write!(
-            f,
-            "({:?}, {:?}, {})",
-            self.token_type, self.lexeme, self.line
-        )
-    }
-}
-
-impl core::fmt::Display for Token<'_> {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        write!(f, "{}", self.lexeme)
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_token_debug() {
-        let token = Token::new(TokenType::Identifier, "foo", 1);
-        let debug_output = format!("{:?}", token);
-        assert_eq!(debug_output, r#"(Identifier, "foo", 1)"#);
     }
 }
